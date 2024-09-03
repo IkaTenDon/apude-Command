@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo "DO APT UPDATE"
+sudo apt update
+echo "DO APT UPGRADE -Y"
+sudo apt upgrade -y
+echo "DO APT AUTOREMOVE"
+sudo apt autoremove
+echo "FINISHED"
