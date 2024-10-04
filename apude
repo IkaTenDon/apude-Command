@@ -1,9 +1,12 @@
 #!/bin/sh
 
-echo "DO APT UPDATE"
+echo "\n DO APT UPDATE \n"
 sudo apt update
-echo "DO APT UPGRADE -Y"
+echo "\n UPDATE DONE! \n"
+echo "\n DO APT UPGRADE -Y \n"
 sudo apt upgrade -y
-echo "DO APT AUTOREMOVE"
-sudo apt autoremove
-echo "FINISHED"
+echo "\n DONE! \n"
+echo "\n DO APT AUTOREMOVE - Y\n"
+sudo apt autoremove -y
+echo "\n DONE! \n"
+echo "\n FINISHED!!!!!!!!!! \n"
