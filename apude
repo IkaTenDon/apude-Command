@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "\n DO APT UPDATE \n"
 sudo apt update
