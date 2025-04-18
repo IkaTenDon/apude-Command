@@ -1,12 +1,54 @@
-#!/bin/bash
+#!/bin/bash -e
 
-echo "\n DO APT UPDATE \n"
-sudo apt update
-echo "\n UPDATE DONE! \n"
-echo "\n DO APT UPGRADE -Y \n"
-sudo apt upgrade -y
-echo "\n DONE! \n"
-echo "\n DO APT AUTOREMOVE - Y\n"
-sudo apt autoremove -y
-echo "\n DONE! \n"
-echo "\n FINISHED!!!!!!!!!! \n"
+onlyShowingHelp=0
+fullUpgrade=0
+
+while getopts "hf" opt; do
+    case $opt in
+        h)
+            echo "You can do update with one command"
+            echo "usage:"
+            echo "    $0 [options]"
+            echo "options"
+            echo "    -h : show this help"
+            echo "    -f : do \"apt full-upgrade\" before \"apt upgrade\""
+            echo "If you don't use any option, I will do only \"apt upgrade\""
+            onlyShowingHelp=1
+            ;;
+        f)
+            fullUpgrade=1
+            ;;
+        \?)
+            echo "Undefined option" >&2
+            echo "This command now allows 2 options" >&2
+            echo "    -h" >&2
+            echo "    -f" >&2
+            echo "type \"$0 -h\" to know more"
+            exit 1
+            ;;
+    esac
+done
+
+if [ $onlyShowingHelp -eq 0 ]; then
+    echo "    DO \"APT UPDATE\""
+    sudo apt update
+    echo "    \"UPDATE\" DONE!"
+    echo ""
+    if [ $fullUpgrade -eq 1 ]; then
+        echo "    DO \"APT FULL-UPGRADE -Y\""
+        sudo apt full-upgrade -y 
+        echo "    \"FULL-UPGRADE\" DONE!"
+        echo ""
+    else
+        echo "    DO \"APT UPGRADE -Y\""
+        sudo apt upgrade -y
+        echo "    \"UPGRADE\" DONE!"
+        echo ""
+    fi
+    echo "    DO \"APT AUTOREMOVE -Y\""
+    sudo apt autoremove -y
+    echo "    \"AUTOREMOVE\" DONE!"
+    echo ""
+
+    echo "    FINISHED!!!"
+fi
