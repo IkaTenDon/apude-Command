@@ -6,13 +6,6 @@ fullUpgrade=0
 while getopts "hf" opt; do
     case $opt in
         h)
-            echo "You can do update with one command"
-            echo "usage:"
-            echo "    $0 [options]"
-            echo "options"
-            echo "    -h : show this help"
-            echo "    -f : do \"apt full-upgrade\" before \"apt upgrade\""
-            echo "If you don't use any option, I will do only \"apt upgrade\""
             onlyShowingHelp=1
             ;;
         f)
@@ -29,7 +22,15 @@ while getopts "hf" opt; do
     esac
 done
 
-if [ $onlyShowingHelp -eq 0 ]; then
+if [ $onlyShowingHelp -eq 1 ]; then
+    echo "You can do update with one command"
+    echo "usage:"
+    echo "    $0 [options]"
+    echo "options"
+    echo "    -h : show this help"
+    echo "    -f : do \"apt full-upgrade\" before \"apt upgrade\""
+    echo "If you don't use any option, I will do only \"apt upgrade\""
+else
     echo "    DO \"APT UPDATE\""
     sudo apt update
     echo "    \"UPDATE\" DONE!"
